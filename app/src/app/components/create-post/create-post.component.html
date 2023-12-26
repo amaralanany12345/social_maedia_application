@@ -1,0 +1,8 @@
+<form (ngSubmit)="addPost()">
+    <input type="text" name="post" placeholder="write some thing" [(ngModel)]="newPost.post"/>
+    <button type="submit">add post</button>
+</form>
+
+<form (ngSubmit)="addPost()">
+    <input type="file" value="change profile" name="image" (change)="onFileSelected($event)"   >
+</form>

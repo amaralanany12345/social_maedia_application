@@ -1,0 +1,25 @@
+<div class="content">
+    <button (click)="gotoCreatePostPAge()">create post</button>
+    <input type="text" placeholder="search using user name" [(ngModel)]="personalPageUserName" (ngModelChange)="handleSearchnput($event,personalPageUserName)"/>
+    <h2 (click)="gotoPersonalPage()">{{mainuser.username}}</h2>
+<div class="container">
+    <div *ngFor="let item of unique;let i = index">
+        <p (click)="goPersonalPAge(i)">{{item.username}}</p>
+    </div>
+    <p >{{all}}</p>
+    <div class="personalPage" *ngFor="let item of allPosts;let i = index" [hidden]="mainuser.email==item.email" >
+        <h3 class="username" (click)="showPersonalPage(i)">{{item.username}}<span class="postedBy">   .{{item.date}}</span></h3>
+        <p (click)="showPost(i)">{{item.post}}</p>
+        <img src={{item.image}}>
+        <p (click)="showPeopleLiked(i)">{{item.numOfLikes}}</p>
+        <div class="btns">
+            <button [hidden]="addLikeClicked[i]" (click)="addLike(i)"> like</button>
+            <button class="removeLike" [hidden]="!addLikeClicked[i]" (click)="removeLike(i)">liked</button>
+            <button (click)="showPost(i)">comment</button>
+            <button (click)="sharePost(i)">share</button>
+            <button [hidden]="allSavedPost[i]" (click)="savePost(i)">save post</button>
+            <button [hidden]="!allSavedPost[i]" (click)="disSavePost(i)">saved</button>
+        </div>
+    </div>
+</div>
+</div>

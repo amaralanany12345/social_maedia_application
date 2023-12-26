@@ -1,0 +1,15 @@
+<div class="post" *ngFor="let item of savedPosts;let i=index">
+    <h3 class="username" (click)="showPersonalPage(i)">{{item.username}}</h3>
+    <p class="postedBy">{{item.date}}</p>
+    <p (click)="showPost(i)">{{item.post}}</p>
+    <img [hidden]="item.image==''" src={{item.image}}>
+    <div class="">
+
+        <button [hidden]="addLikeClicked[i]" (click)="addLike(i)">like</button>
+        <button [hidden]="!addLikeClicked[i]" (click)="removeLike(i)">unlike</button>
+        <button (click)="showPost(i)">comment</button>
+        <button (click)="sharePost(i)">share</button>
+        <button  (click)="disSavePost(i)">dis save</button> 
+    </div>
+    <p (click)="showPeopleLikePost(i)">{{item.numOfLikes}}</p>
+</div>

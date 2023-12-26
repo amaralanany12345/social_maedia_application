@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div *ngFor="let item of personalPage;let i =index">
+        <img [hidden]="item.profileImage=='' " class="image" src={{item.profileImage}}>
+        <h2>{{user.username}}</h2>
+        <h2>followers</h2>
+        <p (click)="showFollowers(i)" >{{item.numOfFollowers}}</p>
+    </div>
+    <button [hidden]="user.email!=mainuser.email" (click)="gotoCreatePostPAge()">create post</button>
+    <button [hidden]="user.email!=mainuser.email" (click)="gotosavedPosts()">saved posts</button>
+    <button [hidden]="user.email!=mainuser.email" (click)="profileImage()">profile image</button>
+    <button [hidden]="Joining || user.email==mainuser.email" (click)="join()">join</button>
+    <button  [hidden]="!Joining" (click)="disJoin()">dis join</button>
+        
+
+        <div class="container">
+            
+        <div class="post" *ngFor="let item of allUserPosts;let i=index">
+            <h3 class="username" >{{item.username}}<span class="postedBy">  .  {{item.date}}</span></h3>
+            <button [hidden]="item.email!=mainuser.email" (click)="edit(i)">edit post</button>
+            <button [hidden]="item.email!=mainuser.email" (click)="deletePost(i)">delete post</button>
+            <p (click)="showPost(i)">{{item.post}}</p>
+            <img src={{item.image}}>
+            <div class="">
+
+                <button [hidden]="addLikeClicked[i]" (click)="addLike(i)">like</button>
+                <button [hidden]="!addLikeClicked[i]" (click)="removeLike(i)">unlike</button>
+                <button (click)="showPost(i)">comment</button>
+                <button (click)="sharePost(i)">share</button>
+                <button [hidden]="allSavedPost[i]" (click)="savePost(i)">save post</button>
+                <button [hidden]="!allSavedPost[i]" (click)="disSavePost(i)">saved</button>
+            </div>
+            <p (click)="showPeopleLikePost(i)">{{item.numOfLikes}}</p>
+        </div>
+</div>
+</body>
+</html>

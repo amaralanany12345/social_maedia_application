@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="content">
+
+<div class="post">
+    <h1 (click)="gotoPersonalPage()">{{post.username}}</h1>
+    <p>{{post.date}}</p>
+    <h3>{{post.post}}</h3>
+    <h3 (click)="showPeopleLikePost()">{{post.numOfLikes}}</h3>
+    <form (ngSubmit)="addComment()">
+        <div >
+            <input type="text" name="post" placeholder="write something" [(ngModel)]="newComment.comment"/>
+            <button type="submit">add </button>
+        </div>
+    </form>
+</div>
+<div class="comments">
+    <div class="comment" *ngFor="let item of allComments;let i= index">
+        <h2 (click)="showPersonalPage(i)">{{item.username}}</h2>
+        <p>{{item.comment}}</p>
+        <div class="btns">
+            <button  (click)="replyToComment(i)">reply</button>
+            <button [hidden]="peopleAddLikComment[i]"(click)="likeComment(i)">like</button>
+            <button [hidden]="!peopleAddLikComment[i]" (click)="disLikeComment(i)">unLike</button>
+            <button [hidden]="mainuser.email!=item.email" (click)="editComment(i)">edit comment</button>
+            <button [hidden]="mainuser.email!=item.email" (click)="deleteComment(i)">delete comment</button>
+        </div>
+        <h3 (click)="showPeopleLikeComment(i)">{{item.numOfCommentLikes}}</h3>
+        <div *ngFor="let item of item.replies ;let j=index">
+            <h3 (click)="goToPersonalPage(i,j)">{{item.user.username}}</h3>    
+            <p>{{item.reply}}</p>
+            <button [hidden]="peopleAddLikeToReply[i][j]" (click)="likeReply(i,j)">like</button>
+            <button [hidden]="!peopleAddLikeToReply[i][j]" (click)="disLikeReply(i,j)">unLike</button>
+            <button (click)="editReply(i,j)" [hidden]="mainuser.email!=item.user.email">edit reply</button>
+            <button (click)="deleteReply(i,j)" [hidden]="mainuser.email!=item.user.email">delete reply</button>
+            <p (click)="showPeopleLikeReply(i,j)">{{item.numOfReplyLike}}</p>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+<form>
+    <input type="file" value="change profile" (change)="onFileSelected($event)">
+</form>
+
+<div *ngIf="imageUrl">
+  <img [src]="imageUrl" alt="Selected Image">
+</div>

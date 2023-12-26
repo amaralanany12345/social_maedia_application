@@ -1,0 +1,3 @@
+<div *ngFor="let item of peopleLikedComment;let i= index">
+    <h2 (click)="goToPersonalPage(i)">{{item.username}}</h2>
+</div>

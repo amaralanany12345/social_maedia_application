@@ -1,0 +1,9 @@
+<form [formGroup]="signinForm" (ngSubmit)="signin()">
+    <label>email</label><br/>
+    <input formControlName="email" type="text" placeholder="email" formControlName="email" required/><br/>
+    <label>password</label><br/>
+    <input formControlName="password" type="text" placeholder="password" formControlName="password" required/><br/>
+    <button type="submit">sign in</button>
+</form>
+<span [hidden]="!loggedIn">user not found </span>
+<a routerLink="S" routerLinkActive="active">sign up</a>
